@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="company_name">RIT Automation</string>
+    <string name="choose_api">Choose api</string>
+    <string name="current_api">CURRENT_API</string>
+    <string name="preference_file_key">settings</string>
+    <string name="radio_button_dog_api">Dog api</string>
+    <string name="radio_button_nationalize_api">Nationalize api</string>
+    <string name="radio_button_custom_api">Custom api</string>
+</resources>

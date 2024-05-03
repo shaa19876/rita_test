@@ -1,0 +1,25 @@
+package ru.shaa.main.data.repository
+
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.merge
+import ru.shaa.main.data.api.CustomApi
+import ru.shaa.main.data.repository.util.RequestResult
+import ru.shaa.main.domain.model.CustomApiModel
+
+class CustomApiRepository : MainRepository<CustomApiModel> {
+    private val api = CustomApi()
+    override fun getData(request: String?): Flow<RequestResult<CustomApiModel>> {
+        val start = flowOf(RequestResult.Loading<CustomApiModel>())
+
+        val response = flow {
+            emit(api.getData(request!!))
+        }.map { result ->
+            result?.let { RequestResult.Success(CustomApiModel(it)) } ?: RequestResult.Error()
+        }
+
+        return merge(start, response)
+    }
+}
